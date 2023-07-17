@@ -1,3 +1,5 @@
+import React from "react";
+
 function hash(value, limit) {
 	value = value.toLowerCase().replace(" ", "");
 	let count = 0;
@@ -8,7 +10,6 @@ function hash(value, limit) {
 }
 
 function getPath(index) {
-
 	switch (index) {
 		// Android Logo
 		case 0:
@@ -275,54 +276,58 @@ function getPath(index) {
 	}
 }
 
-function getColorCombo(index){
+function getColorCombo(index) {
 	let colors = [
 		// 12
-		['#f3c9dd', '#000000'],
+		["#f3c9dd", "#000000"],
 		// 21
-		['#f46c95', '#1b1c30'],
+		["#f46c95", "#1b1c30"],
 		// 31
-		['#212339', '#86c252'],
+		["#212339", "#86c252"],
 		// 32
-		['#f9d4d3', '#1461bb'],
+		["#f9d4d3", "#1461bb"],
 		// 34
-		['#022d30', '#f6a56e'],
+		["#022d30", "#f6a56e"],
 		// 40 way too bright
 		// ['#f4eb02', '#000000'],
 		// 41
-		['#f5bdbc', '#000000'],
+		["#f5bdbc", "#000000"],
 		// 54
-		['#e0e2e9', '#0d1432'],
+		["#e0e2e9", "#0d1432"],
 		// 57
-		['#f8dada', '#e75054'],
+		["#f8dada", "#e75054"],
 		// 72
-		['#194341', '#f04c31'],
+		["#194341", "#f04c31"],
 		// 75
-		['#ffc5b7', '#233629'],
+		["#ffc5b7", "#233629"],
 		// 86
-		['#f9e9c3', '#f93b6d'],
+		["#f9e9c3", "#f93b6d"],
 		// 90
-		['#a9d6cf', '#1c92d3'],
+		["#a9d6cf", "#1c92d3"],
 		// 101
-		['#0d074d', '#f9418b'],
-    ]
-	if(colorValue(colors[index][0]) > colorValue(colors[index][1])){
-		let [x, y] = colors[index]
-		return [y, x]
+		["#0d074d", "#f9418b"],
+	];
+	if (colorValue(colors[index][0]) > colorValue(colors[index][1])) {
+		let [x, y] = colors[index];
+		return [y, x];
 	}
-	return colors[index]
+	return colors[index];
 }
 
-function colorValue(color){
-	let ref = {}
-	'0123456789'.split('').map(alpha => ref[alpha] = parseInt(alpha))
-	'abcdef'.split('').map((alpha, ind) => ref[alpha] = 10 + ind)
-	return color.substring(1).toLowerCase().split('').reduce((prev, cur) => prev + ref[cur], 0)
+function colorValue(color) {
+	let ref = {};
+	"0123456789".split("").map((alpha) => (ref[alpha] = parseInt(alpha)));
+	"abcdef".split("").map((alpha, ind) => (ref[alpha] = 10 + ind));
+	return color
+		.substring(1)
+		.toLowerCase()
+		.split("")
+		.reduce((prev, cur) => prev + ref[cur], 0);
 }
 
 function Emoji(props) {
-	let value = hash(props.value, 43)
-	
+	let value = hash(props.value, 43);
+
 	return (
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
@@ -330,7 +335,7 @@ function Emoji(props) {
 			height={props.size}
 			viewBox="0 0 256 256"
 			style={{
-				fill: props.color[0]
+				fill: props.color[0],
 			}}
 		>
 			{getPath(value)}
@@ -338,8 +343,13 @@ function Emoji(props) {
 	);
 }
 
-export default function (props) {
+export function Emojitar(props) {
 	let text = "";
+
+	if (props.value === undefined) {
+		throw new Error("Pass a suitable text as the `value` prop.");
+	}
+
 	if (props.displayValue) {
 		text = props.displayValue;
 	} else {
@@ -348,7 +358,7 @@ export default function (props) {
 
 	let size = (props.size || 32) * 1.6;
 
-	let color = getColorCombo(hash(props.value, 13))
+	let color = getColorCombo(hash(props.value, 13));
 
 	let border = {
 		width: props.borderSize || 2,
@@ -372,7 +382,7 @@ export default function (props) {
 		border: props.border
 			? `${border.width}px solid ${border.color}`
 			: "none",
-		aspectRatio: '1 / 1',
+		aspectRatio: "1 / 1",
 	};
 
 	return (

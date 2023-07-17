@@ -1,30 +1,57 @@
 {
-  "name": "emojitars",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  },
-  "devDependencies": {
-    "@phosphor-icons/react": "^2.0.9",
-    "@types/react": "^18.0.28",
-    "@types/react-dom": "^18.0.11",
-    "@vitejs/plugin-react": "^4.0.0",
-    "autoprefixer": "^10.4.14",
-    "eslint": "^8.38.0",
-    "eslint-plugin-react": "^7.32.2",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.3.4",
-    "postcss": "^8.4.23",
-    "tailwindcss": "^3.3.2",
-    "vite": "^4.3.2"
-  }
+    "name": "emojitars",
+    "description": "An avatar libraray for your next react project.",
+    "version": "0.1.0",
+    "main": "dist/index.js",
+    "type": "module",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ashishk1331/emojitar.git"
+    },
+    "keywords": [
+        "avatar",
+        "react"
+    ],
+    "author": "Ashish Khare",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/ashishk1331/emojitar/issues"
+    },
+    "homepage": "https://emojitars.super.site/",
+    "scripts": {
+        "dev": "vite",
+        "build": "esbuild ./src/index.js --bundle --minify --format=esm --outdir=dist",
+        "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+        "preview": "vite preview",
+        "storybook": "storybook dev -p 6006",
+        "build-storybook": "storybook build"
+    },
+    "dependencies": {
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0"
+    },
+    "devDependencies": {
+        "@storybook/addon-essentials": "^7.0.27",
+        "@storybook/addon-interactions": "^7.0.27",
+        "@storybook/addon-links": "^7.0.27",
+        "@storybook/blocks": "^7.0.27",
+        "@storybook/react": "^7.0.27",
+        "@storybook/react-vite": "^7.0.27",
+        "@storybook/testing-library": "^0.0.14-next.2",
+        "@types/react": "^18.2.14",
+        "@types/react-dom": "^18.2.6",
+        "@vitejs/plugin-react": "^4.0.1",
+        "esbuild": "^0.18.13",
+        "eslint": "^8.44.0",
+        "eslint-plugin-react": "^7.32.2",
+        "eslint-plugin-react-hooks": "^4.6.0",
+        "eslint-plugin-react-refresh": "^0.4.1",
+        "prop-types": "^15.8.1",
+        "storybook": "^7.0.27",
+        "vite": "^4.4.0"
+    },
+    "peerDependencies": {
+        "react": ">=16.12.0",
+        "react-dom": ">=16.12.0"
+    }
 }
